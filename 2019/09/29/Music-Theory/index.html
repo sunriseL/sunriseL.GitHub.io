@@ -10,8 +10,13 @@
 
     <!--Description-->
     
-        <meta name="description" content="原题https://leetcode.com/problems/longest-consecutive-sequence/
-题目描述Given an unsorted array of integers, find the length of the longest consecutive elem">
+        <meta name="description" content="前言本文为岛冈让的《综合和声》的阅读笔记
+实技规则
+A1：
+C1： 禁止任意声部连续八度、一度的进行
+C2： 连续五度的进行在后边的音程是完全五度的时候禁止
+C3： 外声部并达八度、五度时高音部不可以是跳跃进行
+C4： 禁止并达一度，除了属（七）和弦进行到主和弦时低中音向上小二度，低音向上纯四度的情">
     
 
     <!--Author-->
@@ -21,7 +26,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Longest Consecutive Sequence">
+        <meta property="og:title" content="Music Theory">
     
 
     <!--Open Graph Description-->
@@ -43,7 +48,7 @@
 
     <!-- Title -->
     
-    <title>Longest Consecutive Sequence - S.R.L</title>
+    <title>Music Theory - S.R.L</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -111,8 +116,8 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Longest Consecutive Sequence</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-04-28</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Music Theory</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-09-29</p>
         </div>
     </div>
 
@@ -132,27 +137,37 @@
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/leetcode/">#leetcode</a>
+                                <a class="fw3 ph1 dib" href="/tags/Music-Theory-Rule/">#Music-Theory Rule</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given an unsorted array of integers, find the length of the longest consecutive elements sequence.</p>
-<p>Your algorithm should run in O(n) complexity.</p>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><strong>Example 1:</strong></p>
-<blockquote>
-<p>Input: [100, 4, 200, 1, 3, 2]<br>Output: 4<br>Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</p>
-</blockquote>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        int result = 0;</span><br><span class="line">        for(auto i : nums)&#123;</span><br><span class="line">            num_set.insert(i);</span><br><span class="line">        &#125;</span><br><span class="line">        for(auto i : num_set)&#123;</span><br><span class="line">            if(num_set.find(i - 1) == num_set.end())&#123;</span><br><span class="line">                int y = i + 1;</span><br><span class="line">                while(num_set.find(y) != num_set.end())&#123;</span><br><span class="line">                    y++;</span><br><span class="line">                &#125;</span><br><span class="line">                result = max(result, y - i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>是个hard的题目，题目要求O(n)的时间复杂度，因此自然想到采用unordered_set，之前不太使用过map和set的数据结构，导致很多题思路被局限了，这次算是一个练习，代码很简单，不过空间利用率比较低，不过看了一下大家的空间都差不多，只是一些小优化</p>
+                    <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文为岛冈让的《综合和声》的阅读笔记</p>
+<h1 id="实技"><a href="#实技" class="headerlink" title="实技"></a>实技</h1><h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><ul>
+<li><strong>A1：</strong></li>
+<li><strong>C1：</strong> 禁止任意声部连续八度、一度的进行</li>
+<li><strong>C2：</strong> 连续五度的进行在后边的音程是完全五度的时候禁止</li>
+<li><strong>C3：</strong> 外声部并达八度、五度时高音部不可以是跳跃进行</li>
+<li><strong>C4：</strong> 禁止并达一度，除了属（七）和弦进行到主和弦时低中音向上小二度，低音向上纯四度的情况</li>
+<li><strong>B2：</strong> 限定进行一般是二度进行</li>
+<li><strong>A2：</strong> 限定进行音原则上禁止重复</li>
+</ul>
+<h2 id="定型"><a href="#定型" class="headerlink" title="定型"></a>定型</h2><h3 id="D-定型"><a href="#D-定型" class="headerlink" title="D 定型"></a>D 定型</h3><p>是所有和弦进行中出现频率最高最重要的进行，记为D-&gt;T。<br>指的是属和弦进行到主和弦中低音的各种进行方式，统称为bass的Dominant定型，简称D定型</p>
+<p>属和弦一般第一转位进行到主和弦原位，第三转位进行到主和弦第一转位</p>
+<p>属和弦第二转位只在三音D定型种用到，例如Ⅰ-&gt;Ⅴ²-&gt;I¹或者I¹-&gt;Ⅴ²-&gt;I</p>
+<h4 id="D定型的实施"><a href="#D定型的实施" class="headerlink" title="D定型的实施"></a>D定型的实施</h4><p>D定型的上三声的配置和连接称作D定型的实施</p>
+<ul>
+<li>如果上三声中含有限定进行音，则实施限定进行</li>
+<li>上三声中的共同音进行保留，即Ⅴ</li>
+<li>上三声中除了导音以外的音，进行相对自由，尤其对于高音部而言，进行进行会有较好的效果</li>
+</ul>
 
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/leetcode/">#leetcode</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Music-Theory-Rule/">#Music-Theory Rule</a>
                         </div>
                     
 

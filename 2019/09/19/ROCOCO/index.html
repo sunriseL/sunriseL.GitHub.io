@@ -10,8 +10,8 @@
 
     <!--Description-->
     
-        <meta name="description" content="原题https://leetcode.com/problems/longest-consecutive-sequence/
-题目描述Given an unsorted array of integers, find the length of the longest consecutive elem">
+        <meta name="description" content="Problem这篇文章针对分布式情况下的Transaction提出了一种新的并发控制机制，并与已有的并发控制使用TPC-C进行了比较，在高并发情况下扩展性较好。
+Observation这篇文章针对OTLP(Online Transaction Processing)类型的workload，因为现有的">
     
 
     <!--Author-->
@@ -21,7 +21,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Longest Consecutive Sequence">
+        <meta property="og:title" content="Paper Reading: Extracting More Concurrency from Distributed Transactions">
     
 
     <!--Open Graph Description-->
@@ -43,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>Longest Consecutive Sequence - S.R.L</title>
+    <title>Paper Reading: Extracting More Concurrency from Distributed Transactions - S.R.L</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -111,8 +111,8 @@
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Longest Consecutive Sequence</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-04-28</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Paper Reading: Extracting More Concurrency from Distributed Transactions</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-09-19</p>
         </div>
     </div>
 
@@ -132,27 +132,27 @@
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/leetcode/">#leetcode</a>
+                                <a class="fw3 ph1 dib" href="/tags/Paper-Reading-Transaction/">#Paper-Reading Transaction</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
-<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given an unsorted array of integers, find the length of the longest consecutive elements sequence.</p>
-<p>Your algorithm should run in O(n) complexity.</p>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><strong>Example 1:</strong></p>
-<blockquote>
-<p>Input: [100, 4, 200, 1, 3, 2]<br>Output: 4<br>Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</p>
-</blockquote>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        int result = 0;</span><br><span class="line">        for(auto i : nums)&#123;</span><br><span class="line">            num_set.insert(i);</span><br><span class="line">        &#125;</span><br><span class="line">        for(auto i : num_set)&#123;</span><br><span class="line">            if(num_set.find(i - 1) == num_set.end())&#123;</span><br><span class="line">                int y = i + 1;</span><br><span class="line">                while(num_set.find(y) != num_set.end())&#123;</span><br><span class="line">                    y++;</span><br><span class="line">                &#125;</span><br><span class="line">                result = max(result, y - i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>是个hard的题目，题目要求O(n)的时间复杂度，因此自然想到采用unordered_set，之前不太使用过map和set的数据结构，导致很多题思路被局限了，这次算是一个练习，代码很简单，不过空间利用率比较低，不过看了一下大家的空间都差不多，只是一些小优化</p>
-
+                    <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>这篇文章针对分布式情况下的Transaction提出了一种新的并发控制机制，并与已有的并发控制使用TPC-C进行了比较，在高并发情况下扩展性较好。</p>
+<h1 id="Observation"><a href="#Observation" class="headerlink" title="Observation"></a>Observation</h1><p>这篇文章针对OTLP(Online Transaction Processing)类型的workload，因为现有的并发控制例如2PL以及OCC对分布式情况下的高contention请求的性能下降严重，最多降到10%以下，而这种workload不算少见，例如多个用户购买同一件商品。</p>
+<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><ul>
+<li><strong><em>2PL :</em></strong> </li>
+<li><strong><em>OCC:</em></strong></li>
+</ul>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
+<li>stored procedure</li>
+</ul>
+<h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><h1 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h1>
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/leetcode/">#leetcode</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Paper-Reading-Transaction/">#Paper-Reading Transaction</a>
                         </div>
                     
 
