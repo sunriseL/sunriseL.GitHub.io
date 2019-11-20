@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,24 +21,24 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Container With Most Water">
+        <meta property="og:title" content="Container With Most Water"/>
     
 
     <!--Open Graph Description-->
     
 
     <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="S.R.L">
+    <meta property="og:site_name" content="S.R.L"/>
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
     
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary" />
     
 
     <!-- Title -->
@@ -81,27 +81,39 @@
         </a>
         <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/" title="Home">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
                     Home
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/archives" title="Archives">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
                     Archives
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/tags" title="Tags">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
                     Tags
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/categories" title="Categories">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/categories" 
+                    title="Categories">
                     Categories
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/about" title="About">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about" 
+                    title="About">
                     About
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/contact" title="Contact">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/contact" 
+                    title="Contact">
                     Contact
                 </a>
             
@@ -138,7 +150,7 @@
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">https://leetcode.com/problems/container-with-most-water/</a></p>
+                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/container-with-most-water/">https://leetcode.com/problems/container-with-most-water/</a></p>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
 <p><strong>Note:</strong> You may not slant the container and n is at least 2.<br><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg" alt></p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><strong>Example 1:</strong></p>
@@ -147,9 +159,18 @@
 </blockquote>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p><strong>此解法TLE</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; dp;</span><br><span class="line">    int maxAreaRecursive(vector&lt;int&gt;&amp; height, int start, int end) &#123;</span><br><span class="line">        if(dp[start][end] != -1) return dp[start][end];</span><br><span class="line">        int result = max(max(maxAreaRecursive(height,start + 1, end),maxAreaRecursive(height,start, end - 1)),</span><br><span class="line">                   min(height[start], height[end]) * (end - start));</span><br><span class="line">        dp[start][end] = result;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        dp = vector&lt;vector&lt;int &gt;&gt;(size, vector&lt;int&gt;(size,-1));</span><br><span class="line">        for(int i = 0;i &lt; size - 1;i++)&#123;</span><br><span class="line">            dp[i][i+1] = min(height[i],height[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxAreaRecursive(height, 0, size - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p><strong>此方法Memory Limit Exceeded</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; dp;</span><br><span class="line">    </span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        dp = vector&lt;vector&lt;int &gt;&gt;(size, vector&lt;int&gt;(size,-1));</span><br><span class="line">        for(int i = 0;i &lt; size - 1;i++)&#123;</span><br><span class="line">            dp[i][i+1] = min(height[i],height[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int s = 2; s &lt; size;s++)&#123;</span><br><span class="line">            for(int i = 0;i &lt; size - s;i++)&#123;</span><br><span class="line">                dp[i][i + s] = max(max(dp[i + 1][i + s],dp[i][i + s - 1]), min(height[i],height[i + s]) * s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][size -1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><p>此解法AC了，但是空间和时间利用率都很低<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; dp;</span><br><span class="line">    </span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        vector&lt;int&gt; s(size, -1);</span><br><span class="line">        vector&lt;int&gt; d(size, -1);</span><br><span class="line">        for(int i = 0;i &lt; size - 1;i++)&#123;</span><br><span class="line">            s[i] = min(height[i],height[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int size_ = 2; size_ &lt; size;size_++)&#123;</span><br><span class="line">            for(int i = 0;i &lt; size - size_ ;i++)&#123;</span><br><span class="line">                d[i] = max(max(s[i + 1],s[i]), min(height[i],height[i + size_]) * size_);</span><br><span class="line">            &#125;</span><br><span class="line">            for(int i = 0;i &lt; size - size_;i++)&#123;</span><br><span class="line">                s[i] = d[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p><strong>此方法Memory Limit Exceeded</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; dp;</span><br><span class="line">    </span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        dp = vector&lt;vector&lt;int &gt;&gt;(size, vector&lt;int&gt;(size,-1));</span><br><span class="line">        for(int i = 0;i &lt; size - 1;i++)&#123;</span><br><span class="line">            dp[i][i+1] = min(height[i],height[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int s = 2; s &lt; size;s++)&#123;</span><br><span class="line">            for(int i = 0;i &lt; size - s;i++)&#123;</span><br><span class="line">                dp[i][i + s] = max(max(dp[i + 1][i + s],dp[i][i + s - 1]), min(height[i],height[i + s]) * s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][size -1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><p>此解法AC了，但是空间和时间利用率都很低</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt; &gt; dp;</span><br><span class="line">    </span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        vector&lt;int&gt; s(size, -1);</span><br><span class="line">        vector&lt;int&gt; d(size, -1);</span><br><span class="line">        for(int i = 0;i &lt; size - 1;i++)&#123;</span><br><span class="line">            s[i] = min(height[i],height[i+1]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int size_ = 2; size_ &lt; size;size_++)&#123;</span><br><span class="line">            for(int i = 0;i &lt; size - size_ ;i++)&#123;</span><br><span class="line">                d[i] = max(max(s[i + 1],s[i]), min(height[i],height[i + size_]) * size_);</span><br><span class="line">            &#125;</span><br><span class="line">            for(int i = 0;i &lt; size - size_;i++)&#123;</span><br><span class="line">                s[i] = d[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h2 id="解法三-1"><a href="#解法三-1" class="headerlink" title="解法三"></a>解法三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    </span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int size = height.size();</span><br><span class="line">        int large = 0;</span><br><span class="line">        int start = 0, end = size - 1;</span><br><span class="line">        int temp;</span><br><span class="line">        while(start != end)&#123;</span><br><span class="line">            temp = (min(height[start],height[end]) * (end - start));</span><br><span class="line">            large = max(large,temp);</span><br><span class="line">            if(height[start] &lt; height[end])&#123;</span><br><span class="line">                start++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                end--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return large;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>前三个解法走进了误区，因为隐约觉得这道题好像要用dp就用了dp，但是实际上我这个dp的本质就是遍历所有可能，然后还因为递归和开大数组TLE和MLE，解法三过了但是空间和时间效率都很低</p>
 <p>这道题正确解法是解法四，这个解法的本质是通过一次比较消除比他小的所有可能，从最外侧的两个值开始，设两值为a,b,且a &lt; b,则围的面积为a * size,而a和所有其他点围成的面积高度不会超过a,长度不会超过size,因此相当于把a和其他所有点的可能排除了,将指向a的指针向内移动,以此类推,达到O(n)的时间复杂度和O(1)的空间复杂度。</p>
 
@@ -169,7 +190,7 @@
                 </div>
                 <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
                     
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 1: About -->
                     <div class="mt5 mt0-l">
@@ -183,7 +204,7 @@
     </article>
 </div>
 
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 2: Categories -->
                     

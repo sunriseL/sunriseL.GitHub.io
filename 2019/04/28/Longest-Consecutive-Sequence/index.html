@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,24 +21,24 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Longest Consecutive Sequence">
+        <meta property="og:title" content="Longest Consecutive Sequence"/>
     
 
     <!--Open Graph Description-->
     
 
     <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="S.R.L">
+    <meta property="og:site_name" content="S.R.L"/>
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
     
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary" />
     
 
     <!-- Title -->
@@ -81,27 +81,39 @@
         </a>
         <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/" title="Home">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
                     Home
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/archives" title="Archives">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
                     Archives
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/tags" title="Tags">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
                     Tags
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/categories" title="Categories">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/categories" 
+                    title="Categories">
                     Categories
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/about" title="About">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about" 
+                    title="About">
                     About
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/contact" title="Contact">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/contact" 
+                    title="Contact">
                     Contact
                 </a>
             
@@ -138,7 +150,7 @@
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
+                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-consecutive-sequence/">https://leetcode.com/problems/longest-consecutive-sequence/</a></p>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given an unsorted array of integers, find the length of the longest consecutive elements sequence.</p>
 <p>Your algorithm should run in O(n) complexity.</p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><strong>Example 1:</strong></p>
@@ -146,6 +158,11 @@
 <p>Input: [100, 4, 200, 1, 3, 2]<br>Output: 4<br>Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</p>
 </blockquote>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        int result = 0;</span><br><span class="line">        for(auto i : nums)&#123;</span><br><span class="line">            num_set.insert(i);</span><br><span class="line">        &#125;</span><br><span class="line">        for(auto i : num_set)&#123;</span><br><span class="line">            if(num_set.find(i - 1) == num_set.end())&#123;</span><br><span class="line">                int y = i + 1;</span><br><span class="line">                while(num_set.find(y) != num_set.end())&#123;</span><br><span class="line">                    y++;</span><br><span class="line">                &#125;</span><br><span class="line">                result = max(result, y - i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>是个hard的题目，题目要求O(n)的时间复杂度，因此自然想到采用unordered_set，之前不太使用过map和set的数据结构，导致很多题思路被局限了，这次算是一个练习，代码很简单，不过空间利用率比较低，不过看了一下大家的空间都差不多，只是一些小优化</p>
 
                     
@@ -164,7 +181,7 @@
                 </div>
                 <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
                     
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 1: About -->
                     <div class="mt5 mt0-l">
@@ -178,7 +195,7 @@
     </article>
 </div>
 
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 2: Categories -->
                     

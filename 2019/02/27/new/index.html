@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,24 +21,24 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="最长回文子串">
+        <meta property="og:title" content="最长回文子串"/>
     
 
     <!--Open Graph Description-->
     
 
     <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="S.R.L">
+    <meta property="og:site_name" content="S.R.L"/>
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
     
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary" />
     
 
     <!-- Title -->
@@ -81,27 +81,39 @@
         </a>
         <div class="db dtc-l v-mid w-100 w-75-l tc tr-l">
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/" title="Home">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/" 
+                    title="Home">
                     Home
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/archives" title="Archives">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/archives" 
+                    title="Archives">
                     Archives
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/tags" title="Tags">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/tags" 
+                    title="Tags">
                     Tags
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/categories" title="Categories">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/categories" 
+                    title="Categories">
                     Categories
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/about" title="About">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/about" 
+                    title="About">
                     About
                 </a>
             
-                <a class="link dim f6 f5-l dib mr3 mr4-l white" href="/contact" title="Contact">
+                <a class="link dim f6 f5-l dib mr3 mr4-l white" 
+                    href="/contact" 
+                    title="Contact">
                     Contact
                 </a>
             
@@ -138,7 +150,7 @@
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">https://leetcode.com/problems/longest-palindromic-substring/</a></p>
+                    <h1 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h1><p><a href="https://leetcode.com/problems/longest-palindromic-substring/">https://leetcode.com/problems/longest-palindromic-substring/</a></p>
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</p>
 <h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><p><strong>Example 1:</strong></p>
 <blockquote>
@@ -149,7 +161,9 @@
 <p>Input: “cbbd”<br>Output: “bb”</p>
 </blockquote>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestPalindrome(string s) &#123;</span><br><span class="line">        int size = s.size();</span><br><span class="line">        int longest = 1;</span><br><span class="line">        int start = 0;</span><br><span class="line">        vector&lt; vector&lt;int&gt; &gt; dp(size, vector&lt;int&gt;(size));</span><br><span class="line">        for(int i = 0; i &lt; size; i++)&#123;</span><br><span class="line">            dp[i][i] = 1;</span><br><span class="line">            if(i &lt; size - 1)&#123;</span><br><span class="line">                if(s[i] == s[i + 1])&#123;</span><br><span class="line">                    dp[i][i + 1] = 1;</span><br><span class="line">                    longest = 2;</span><br><span class="line">                    start = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        for(int len = 3;len &lt;= size; len++)&#123;</span><br><span class="line">            for(int i = 0; i &lt; size + 1 - len; i++)&#123;</span><br><span class="line">                int j = i + len - 1;</span><br><span class="line">                if(s[j] == s[i] &amp;&amp; dp[i + 1][j - 1])&#123;</span><br><span class="line">                    dp[i][j] = 1;</span><br><span class="line">                    longest = len;</span><br><span class="line">                    start = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s.substr(start,longest);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestPalindrome(string s) &#123;</span><br><span class="line">        if(s == &quot;&quot;) return &quot;&quot;;</span><br><span class="line">        int size = s.size();</span><br><span class="line">        int longest = 1;</span><br><span class="line">        int start = 0;</span><br><span class="line">        int mx = 0;</span><br><span class="line">        int id = 0;</span><br><span class="line">        vector&lt;int&gt; p(2 * size + 1);</span><br><span class="line">        string n(2 * size + 1,0);</span><br><span class="line">        for(int i = 0; i &lt; 2 * size; i += 2 )&#123;</span><br><span class="line">            n[i] = &apos;#&apos;;</span><br><span class="line">            n[i + 1] = s[i / 2];</span><br><span class="line">        &#125;</span><br><span class="line">        //n[2 * size - 1] = s[size - 1];</span><br><span class="line">        n[2 * size] = &apos;#&apos;;</span><br><span class="line">        </span><br><span class="line">        size = n.size();</span><br><span class="line">        for(int i = 0;i &lt; size;i++)&#123;</span><br><span class="line">            if(mx &gt; i)&#123;</span><br><span class="line">                p[i] = min(p[2 * id - i],mx - i);</span><br><span class="line">            &#125;else p[i] = 1;</span><br><span class="line">            while(i - p[i] &gt;= 0 &amp;&amp; i + p[i] &lt; size &amp;&amp; n[i + p[i]] == n[i - p[i]]) p[i]++;</span><br><span class="line">            </span><br><span class="line">            if(i + p[i]&gt; mx)&#123;</span><br><span class="line">                mx = i + p[i];</span><br><span class="line">                id = i;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            longest = max(longest,p[i]);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0;i &lt; size;i++)&#123;</span><br><span class="line">            if(p[i] == longest) id = i;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        if(longest - 1 == 1) return s.substr(0,1);</span><br><span class="line">        return s.substr((id - longest + 1 + 1)/2,longest - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>解法一采用了dp，复杂度为n2。<br>解法二采用了Manacher算法，问题是对边界条件的处理不太优雅，调试了很久才过，有空优化一下。</p>
 
                     
@@ -168,7 +182,7 @@
                 </div>
                 <div class="fl w-100 w-30-l center fw3 lh-copy pl4-ns tl black-50">
                     
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 1: About -->
                     <div class="mt5 mt0-l">
@@ -182,7 +196,7 @@
     </article>
 </div>
 
-                    <hr class="dn-l mw4 black-50 mt5">
+                    <hr class="dn-l mw4 black-50 mt5" />
                     
                     <!-- Widget 2: Categories -->
                     
