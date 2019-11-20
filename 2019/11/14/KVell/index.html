@@ -10,8 +10,11 @@
 
     <!--Description-->
     
-        <meta name="description" content="Problem这篇文章针对分布式情况下的Transaction提出了一种新的并发控制机制，并与已有的并发控制使用TPC-C进行了比较，在高并发情况下扩展性较好。
-Observation这篇文章针对OTLP(Online Transaction Processing)类型的workload，因为现有的">
+        <meta name="description" content="Contribution KV-Store Desgin Prinple 
+
+Shared-nothing: 所有数据结构都是核local的，不需要核间同步
+Item not sorted on disk： 磁盘上不排序，DRAM主存上排序
+不强迫顺序读，把磁盘IO batch起来减少system ">
     
 
     <!--Author-->
@@ -21,7 +24,7 @@ Observation这篇文章针对OTLP(Online Transaction Processing)类型的workloa
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Paper Reading: Extracting More Concurrency from Distributed Transactions">
+        <meta property="og:title" content="Paper Reading: KVell: the Design and Implementation of a Fast Persistent Key-Value Store">
     
 
     <!--Open Graph Description-->
@@ -43,7 +46,7 @@ Observation这篇文章针对OTLP(Online Transaction Processing)类型的workloa
 
     <!-- Title -->
     
-    <title>Paper Reading: Extracting More Concurrency from Distributed Transactions - S.R.L</title>
+    <title>Paper Reading: KVell: the Design and Implementation of a Fast Persistent Key-Value Store - S.R.L</title>
 
     <!-- Tachyons Core CSS -->
     <link rel="stylesheet" href="//unpkg.com/tachyons/css/tachyons.min.css">
@@ -111,8 +114,8 @@ Observation这篇文章针对OTLP(Online Transaction Processing)类型的workloa
     <!-- Title -->
     <div class="w-100 mw8 center vh-40 dt">
         <div class="dtc v-mid white">
-            <h1 class="f1-l f2-m tc tc-m tl-ns">Paper Reading: Extracting More Concurrency from Distributed Transactions</h1>
-            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-09-19</p>
+            <h1 class="f1-l f2-m tc tc-m tl-ns">Paper Reading: KVell: the Design and Implementation of a Fast Persistent Key-Value Store</h1>
+            <p class="f4 fw3 pab-100px tc tc-m tl-ns">2019-11-14</p>
         </div>
     </div>
 
@@ -132,27 +135,26 @@ Observation这篇文章针对OTLP(Online Transaction Processing)类型的workloa
                     
                         <div class="tags-container-vertical">
                             <div class="tags-sub-container">
-                                <a class="fw3 ph1 dib" href="/tags/Paper-Reading-Transaction/">#Paper-Reading Transaction</a>
+                                <a class="fw3 ph1 dib" href="/tags/Paper-Reading/">#Paper-Reading</a>
                             </div>
                         </div>
                     
 
                     <!-- Main Post Content -->
-                    <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>这篇文章针对分布式情况下的Transaction提出了一种新的并发控制机制，并与已有的并发控制使用TPC-C进行了比较，在高并发情况下扩展性较好。</p>
-<h1 id="Observation"><a href="#Observation" class="headerlink" title="Observation"></a>Observation</h1><p>这篇文章针对OTLP(Online Transaction Processing)类型的workload，因为现有的并发控制例如2PL以及OCC对分布式情况下的高contention请求的性能下降严重，最多降到10%以下，而这种workload不算少见，例如多个用户购买同一件商品。</p>
-<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><ul>
-<li><strong><em>2PL :</em></strong> </li>
-<li><strong><em>OCC:</em></strong></li>
+                    <hr>
+<h1 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h1><p><strong><em> KV-Store Desgin Prinple </em></strong></p>
+<ul>
+<li>Shared-nothing: 所有数据结构都是核local的，不需要核间同步</li>
+<li>Item not sorted on disk： 磁盘上不排序，DRAM主存上排序</li>
+<li>不强迫顺序读，把磁盘IO batch起来减少system call的数量（因为nvm低latency，system call成为瓶颈），来达到低latency和高throughput</li>
+<li>不写commit log，写入在写入persist memory后就被承认</li>
 </ul>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><ul>
-<li>stored procedure</li>
-</ul>
-<h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><h1 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h1>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h1 id="Observation"><a href="#Observation" class="headerlink" title="Observation"></a>Observation</h1><h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h1 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h1><h1 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h1>
                     
                     <!-- Tags Bottom -->
                     
                         <div class="tags-container-bottom">
-                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Paper-Reading-Transaction/">#Paper-Reading Transaction</a>
+                            <i class="fa fa-tag pr3 text-main-color"></i><a class="fw3 ph1 dib" href="/tags/Paper-Reading/">#Paper-Reading</a>
                         </div>
                     
 
